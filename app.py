@@ -319,19 +319,20 @@ for msg in st.session_state.messages:
         st.markdown(msg["content"])
 
 # Chat input
-prompt = st.chat_input("Type your message (📎 or attach a file)...", accept_file=True, file_type=["png", "jpg", "jpeg", "pdf"])
+# Sidebar for file uploads
+with st.sidebar:
+    st.header("📄 Document Upload")
+    st.info("When ready, type 'upload' in the chat")
+    uploaded_file = st.file_uploader("Select a file", type=['png', 'jpg', 'jpeg', 'pdf'], key="doc_upload")
+
+# Chat input (simple version without file attachment)
+prompt = st.chat_input("Type your message...")
+
 
 if prompt:
-    # Handle both string and dict/object format
-    if isinstance(prompt, dict):
-        user_text = prompt.get("text", "")
-        files = prompt.get("files", [])
-    elif isinstance(prompt, str):
-        user_text = prompt
-        files = []
-    else:
-        user_text = getattr(prompt, 'text', str(prompt))
-        files = getattr(prompt, 'files', [])
+    user_text = prompt
+    files = []
+
     
     # Display user message
     st.chat_message("user").markdown(user_text)
@@ -342,10 +343,10 @@ if prompt:
     
     # Handle upload command
     if user_text.lower() == "upload":
-        if files and len(files) > 0:
+        if uploaded_file is not None:
             st.toast("📎 Uploading file...", icon="📎")
-            image_bytes = files[0].getvalue()
-            mime = files[0].type
+            image_bytes = uploaded_file.getvalue()
+            mime = uploaded_file.type
             message_parts = [
                 "Please explain this document for me.",
                 types.Part.from_bytes(data=image_bytes, mime_type=mime)
