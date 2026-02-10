@@ -319,7 +319,7 @@ for msg in st.session_state.messages:
         st.markdown(msg["content"])
 
 # Chat input
-prompt = st.chat_input("Type your message...")
+prompt = st.chat_input("Type your message (📎 or attach a file)...", accept_file=True, file_type=["png", "jpg", "jpeg", "pdf"])
 
 if prompt:
     # Handle both string and dict/object format
