@@ -33,6 +33,7 @@ def get_clients():
                 "https://www.googleapis.com/auth/generative-language"
             ]
         )
+        return credentials  # ← ADD THIS LINE HERE
     else:
         st.error("⚠️ Google Cloud credentials not found. Please add them to secrets.")
         st.stop()
@@ -58,8 +59,10 @@ def search_aliyah_information(query: str) -> str:
     """
     with st.status(f"Searching knowledge base for: '{query}'...", expanded=False) as status:
         try:
+            credentials = get_clients()
             client_options = {"api_endpoint": f"{DATA_STORE_LOCATION}-discoveryengine.googleapis.com"}
-            de_client = discoveryengine.SearchServiceClient(client_options=client_options)
+            de_client = discoveryengine.SearchServiceClient(client_options=client_options,
+								credentials=credentials)
 
             serving_config = f"projects/{PROJECT_ID}/locations/{DATA_STORE_LOCATION}/collections/default_collection/engines/{APP_ID}/servingConfigs/default_search"
 
