@@ -22,21 +22,24 @@ Ministry_of_aliyah_branch_table = f"{PROJECT_ID}.{DATASET_ID}.ministry_of_aliyah
 MODEL_ID = "gemini-2.5-flash"
 
 # --- AUTHENTICATION ---
-@st.cache_resource
-def get_clients():
-    """Initialize Google Cloud clients with credentials from secrets"""
+def get_credentials():
+    """Get credentials from secrets"""
     if "gcp_service_account" in st.secrets:
-        credentials = service_account.Credentials.from_service_account_info(
+        return service_account.Credentials.from_service_account_info(
             st.secrets["gcp_service_account"],
             scopes=[
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/generative-language"
             ]
         )
-        return credentials  # ← ADD THIS LINE HERE
     else:
         st.error("⚠️ Google Cloud credentials not found. Please add them to secrets.")
         st.stop()
+
+@st.cache_resource
+def get_clients():
+    """Initialize Google Cloud clients with credentials from secrets"""
+    credentials = get_credentials()
     
     client = genai.Client(vertexai=True, project=PROJECT_ID, location=LOCATION, credentials=credentials)
     bq_client = bigquery.Client(project=PROJECT_ID, credentials=credentials)
@@ -59,7 +62,7 @@ def search_aliyah_information(query: str) -> str:
     """
     with st.status(f"Searching knowledge base for: '{query}'...", expanded=False) as status:
         try:
-            credentials = get_clients()
+            credentials = get_credentials()
             client_options = {"api_endpoint": f"{DATA_STORE_LOCATION}-discoveryengine.googleapis.com"}
             de_client = discoveryengine.SearchServiceClient(client_options=client_options,
 								credentials=credentials)
