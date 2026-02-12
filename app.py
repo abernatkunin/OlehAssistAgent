@@ -469,7 +469,7 @@ if prompt:
             
             if text and all(key in text.upper() for key in menu_keywords):
                 text = (
-                    "I can help you with a few things. Please choose one of the following options:\n\n"
+                    "I'm here to assist you with your Aliyah journey. Please select one of the following:\n\n"
                     "**A) GENERAL INFORMATION:**\n(rights, benefits, Sal Klita, health care, etc.)\n\n"
                     "**B) DOCUMENT UNDERSTANDING:**\n(confusing forms, bills, letters, etc.)\n\n"
                     "**C) FIRST STEPS & APPOINTMENTS:**\n(Guiding for essential first steps in Israel, such as setting up a phone, bank account, and making your Ministry of Aliyah Appointment)"
