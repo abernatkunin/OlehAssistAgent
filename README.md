@@ -1,4 +1,4 @@
-# OlehAssist 🇮🇱
+# OlehAssist
 
 An AI-powered conversational agent designed to help new immigrants (Olim) navigate Israeli bureaucracy.
 
@@ -51,7 +51,7 @@ The main implementation is in `OlehAssist_FINAL_Code.ipynb` which includes:
 
 ## 🙏 Acknowledgments
 
-Built as part of the Generative AI course at Reichman University's Lauder School of Government, Diplomacy and Strategy.
+Built as part of the Generative AI course at Reichman University.
 
 ## 📝 License
 
