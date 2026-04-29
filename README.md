@@ -41,7 +41,7 @@ Sequential guidance through critical onboarding tasks:
 
 ## 📓 Implementation
 
-The main implementation is in `OlehAssist_FINAL_Code.ipynb` which includes:
+The main implementation is in `OlehAssist Code.ipynb` which includes:
 - RAG system using Google Cloud Discovery Engine
 - Text-to-SQL generation for BigQuery queries
 - Multimodal document processing
