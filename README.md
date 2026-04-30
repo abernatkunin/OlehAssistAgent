@@ -23,7 +23,7 @@ OlehAssist leverages Google Cloud Platform's Vertex AI and generative AI models 
   - Vertex AI (Gemini models)
   - BigQuery (structured data queries)
   - Cloud Discovery Engine (RAG implementation)
-- **Python** (Google Colab notebook)
+- **Python** (Streamlit for deployment & Google Colab for development)
 
 ## 📋 Three Main Pathways
 
