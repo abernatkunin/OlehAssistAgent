@@ -13,7 +13,7 @@ st.title("🤖 OlehAssist")
 st.markdown("Your personal guide to navigating bureaucracy in Israel.")
 
 # --- CONFIGURATION ---
-PROJECT_ID = "avibernat-kunin"
+PROJECT_ID = "project-7bee83ec-8246-411c-b22"
 LOCATION = "global"
 DATA_STORE_LOCATION = "global"
 APP_ID = "olehassistapp_1768923251166"
